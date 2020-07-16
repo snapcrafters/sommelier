@@ -1,0 +1,87 @@
+name: sommelier
+title: Sommelier
+version: "1.0"
+summary: Easily create snaps for Windows applications.
+description: |
+  Sommelier is a script to easily create snaps for Windows applications. This snap is a demo of the sommelier script, meant for people developing snaps of Windows applications. You can use this snap to test out which configuration and winetricks are needed for the Windows application to run correctly in Wine.
+grade: stable
+icon: snap/gui/photoscape.png
+
+base: core18
+confinement: strict
+
+architectures:
+  - build-on: amd64
+
+apps:
+  sommelier:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier run-exe
+    plugs:
+      - home
+      - network
+      - network-bind
+      - opengl
+      - joystick
+      - audio-record
+      - audio-playback
+      - removable-media
+      - bluez
+      - raw-usb
+      - camera
+      - hardware-observe
+      - process-control
+      - mount-observe
+  # The wine command can be used to run applications inside the wine
+  # environment that this snap uses.
+  #
+  # For example, users can configure the wine environment of this snap
+  # by running `myapp.wine winecfg`.
+  wine:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier
+    plugs:
+      - home
+      - network
+      - network-bind
+      - opengl
+      - joystick
+      - audio-record
+      - audio-playback
+      - removable-media
+      - bluez
+      - raw-usb
+      - camera
+      - hardware-observe
+      - process-control
+      - mount-observe
+  # The winetricks command can be used to run winetricks inside the wine
+  # environment that this snap uses.
+  winetricks:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier winetricks
+    plugs:
+      - network
+
+parts:
+  installer:
+    plugin: dump
+    source: installer
+
+  # The sommelier script helps you snap Windows applications using Wine. It 
+  # initializes and configures Wine and installs the Windows application.
+  sommelier:
+    plugin: make
+    source: https://github.com/snapcrafters/sommelier-core.git
+    source-branch: $SNAPCRAFT_PROJECT_VERSION
+
+# These plugs are used to connect the snap to the wine runtime.
+plugs:
+  wine-runtime:
+    interface: content
+    target: $SNAP/wine-runtime
+    default-provider: wine-platform-runtime
+  wine-5-stable:
+    interface: content
+    target: $SNAP/wine-platform
+    default-provider: wine-platform-5-stable
