@@ -1,11 +1,10 @@
 name: sommelier
 title: Sommelier
 version: "1.0"
-summary: Easily create snaps for Windows applications.
+summary: A demo of the sommelier script, used to snap Windows applications with Wine.
 description: |
   Sommelier is a script to easily create snaps for Windows applications. This snap is a demo of the sommelier script, meant for people developing snaps of Windows applications. You can use this snap to test out which configuration and winetricks are needed for the Windows application to run correctly in Wine.
 grade: stable
-icon: snap/gui/photoscape.png
 
 base: core18
 confinement: strict
@@ -64,10 +63,6 @@ apps:
       - network
 
 parts:
-  installer:
-    plugin: dump
-    source: installer
-
   # The sommelier script helps you snap Windows applications using Wine. It 
   # initializes and configures Wine and installs the Windows application.
   sommelier:
