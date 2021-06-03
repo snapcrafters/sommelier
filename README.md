@@ -1,6 +1,6 @@
 # Sommelier
 
-[Sommelier](https://github.com/snapcrafters/sommelier-core) is a script to easily create snaps for Windows applications. This snap is a demo of the sommelier script, meant for people developing snaps of Windows applications. You can use this snap to test out which configuration and winetricks are needed for the Windows application to run correctly in Wine.
+[Sommelier](https://github.com/snapcrafters/sommelier-core) is a script to easily create snaps for Windows applications. This snap is a demo of the sommelier script, meant for people developing snaps of Windows applications. You can use this snap to test out which configuration and winetricks are needed for the Windows application to run correctly in Wine. You can use this repository as a basis for your own Windows-based snap.
 
 *Published for <img src="http://anything.codes/slack-emoji-for-techies/emoji/tux.png" align="top" width="24" /> with :gift_heart: by Snapcrafters*
 
